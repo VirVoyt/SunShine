@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -31,13 +32,14 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
 
   double tapCount = 0;
-
+  bool tapFlag = true;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Expanded(
-          child:  GestureDetector(          //отвечает за нажатие по фону
+          child:  GestureDetector(
+            //отвечает за нажатие по фону
             onTap: () {
               setState(() {
                 tapCount = tapCount + 0.5;
@@ -49,7 +51,8 @@ class _MainPageState extends State<MainPage> {
               decoration: const BoxDecoration(
                 image: DecorationImage(image: AssetImage("assets/backGround.png"))
               ),
-            child: GestureDetector(          //нажатие по главному объекту
+            child: GestureDetector(
+              //нажатие по главному объекту
               onTap: () {
                 setState(() {
                   tapCount = tapCount + 1;
@@ -60,8 +63,8 @@ class _MainPageState extends State<MainPage> {
                 width: 300,
                 height: 300,
                 alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(image: AssetImage("assets/sunMain.png"))
+                decoration: BoxDecoration(
+                    image: DecorationImage(image: AssetImage(tapFlag ? "assets/sunMain.png" : "assets/sunBlure.png"))
                 ),
                 child: _score(),
               )
@@ -69,20 +72,35 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
         ),
-        Padding(                              //кнопки
-          padding: const EdgeInsets.all(8.0),
+        Container(
+          height: 52.6,
+          width: 1000,
+          decoration: const BoxDecoration(
+          image:  DecorationImage( image: AssetImage("assets/1.jpg"))),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
             children: <Widget>[
-              ElevatedButton(
-                child: const Text('Магазин'),
+              Align(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.red
+                    ),
+                child: const Text('Магазин',),
                 onPressed: () {
+
                   setState(() {
                    //переход в магазин
                   });
                 },
-              ),
-              const SizedBox(width:100),
-              ElevatedButton(
+              )),
+             Align(
+               child:  ElevatedButton(
+                 style:(ElevatedButton.styleFrom(
+                   foregroundColor: Colors.white,
+                   backgroundColor: Colors.orange
+                 )),
                 child: const Text(
                   'Выбор уровная',
                 ),
@@ -90,10 +108,9 @@ class _MainPageState extends State<MainPage> {
             //функционал для выбора уровня
                 },
               ),
-            ],
+             )],
           ),
-        ),
-      ],
+        )],
     );
   }
   //виджет для вывода текста
@@ -106,5 +123,7 @@ class _MainPageState extends State<MainPage> {
             style: const TextStyle(fontSize: 24) // высота шрифта 24
         )
     );
+
   }
 }
+
