@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
   bool tapFlag = true;
 
   //эти параметры будут устанавливать путем покупки чего-либо из магазина
-  bool petBuy1 = false;
+  bool petBuy1 = true;
   int petPower1 = 0;
   bool petBuy2 = true;
   int petPower2 = 0;
@@ -106,7 +106,7 @@ class _MainPageState extends State<MainPage> {
                 onPressed: () {
 
                   setState(() {
-                   petBuy1 = true;
+                   
                   });
                 },
               )),
