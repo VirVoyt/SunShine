@@ -38,40 +38,41 @@ class _MainPageState extends State<MainPage> {
     return Column(
       children: <Widget>[
         Expanded(
-          child:  GestureDetector(
+          child:  Listener(
             //отвечает за нажатие по фону
-            onTap: () {
+            onPointerDown: (b){
               setState(() {
-                tapCount = tapCount + 0.5;
-                debugPrint('Green: $tapCount');
+                tapFlag = false;
+                tapCount = tapCount + 1;
               });
             },
+            onPointerUp: (P){
+              setState(() {
+                tapFlag = true;
+              });
+            } ,
             child: Container(               // отвечает за декорацию фона
               alignment: Alignment.center,
               decoration: const BoxDecoration(
                 image: DecorationImage(image: AssetImage("assets/backGround.png"))
               ),
-            child: GestureDetector(
-              //нажатие по главному объекту
-              onTap: () {
-                setState(() {
-                  tapCount = tapCount + 1;
-                  debugPrint('Yellow :$tapCount');
-                });
-              },
-              child: Container(              //ндекорация главного объекта
+            child:   Container(              //ндекорация главного объекта
                 width: 300,
                 height: 300,
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage(tapFlag ? "assets/sunMain.png" : "assets/sunBlure.png"))
+                decoration: const BoxDecoration(
+                    image: DecorationImage(image: AssetImage("assets/sunMain.png" ))
                 ),
-                child: _score(),
+                child: Stack(
+                  children: [
+                    Container(child: _score()),
+                    Container(child: _hitBox())
+                    ],
+                )
               )
             ),
             ),
           ),
-        ),
         Container(
           height: 52.6,
           width: 1000,
@@ -124,6 +125,22 @@ class _MainPageState extends State<MainPage> {
         )
     );
 
+  }
+
+ Widget _hitBox(){ //виджет для эффекта попадания
+    if (tapFlag == false){
+      debugPrint("$tapFlag");
+    return Container(
+      width: 300,
+      height: 300,
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+          image: DecorationImage(image: AssetImage("assets/sunLight.png" ))
+      ),
+    );
+    } else{
+      return Container();
+    }
   }
 }
 
