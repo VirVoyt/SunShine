@@ -121,11 +121,13 @@ class _MainPageState extends State<MainPage> {
                   ),
                   onPressed: () {
                     //функционал для выбора уровня
+
                   },
                 ),
               )],
           ),
         )],
+
     );
   }
   //виджет для вывода текста
