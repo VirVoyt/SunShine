@@ -116,9 +116,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                 child: const Text('Магазин',),
                 onPressed: () {
-
                   setState(() {
-
                   });
                 },
               )),
