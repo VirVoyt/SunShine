@@ -33,6 +33,8 @@ class _MainPageState extends State<MainPage> {
 
   double tapCount = 0;
   bool tapFlag = true;
+  double opacity = 0.5;
+  bool countFlag = true;
 
   //эти параметры будут устанавливать путем покупки чего-либо из магазина
   bool petBuy1 = true;
@@ -43,8 +45,9 @@ class _MainPageState extends State<MainPage> {
   int petPower3 = 0;
   bool petBuy4 = true;
   int petPower4 = 0;
-  int multiplier = 1;
+  int multiplier = 100;
   int power = 2;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -56,6 +59,7 @@ class _MainPageState extends State<MainPage> {
               setState(() {
                 tapFlag = false;
                 tapCount = tapCount + 1 * multiplier * power + petPower1 + petPower2 + petPower3 + petPower4;
+                opacity = opacity == 0.5 ? 0.0 : 0.5;
               });
             },
             onPointerUp: (P){
@@ -78,9 +82,17 @@ class _MainPageState extends State<MainPage> {
                 child: Stack(
                   children: [
                     Container(alignment: const Alignment(-1.8, 2.5), child: _pet(),),
+                    Container(alignment: const Alignment(-1.25, 1.3), child: _textCountForPet1(),),
+
                     Container(alignment: const Alignment(1.5, -2), child: _pet2(),),
+                    Container(alignment: const Alignment(1.05, -1.85), child: _textCountForPet2(),),
+
                     Container(alignment: const Alignment(-1.5, -2.5), child: _pet3(),),
+                    Container(alignment: const Alignment(-1.1, -2.1), child: _textCountForPet3(),),
+
                     Container(alignment: const Alignment(1.8, 2), child: _pet4(),),
+                    Container(alignment: const Alignment(1.3, 1.1), child: _textCountForPet4(),),
+
                     Container(child: _score()),
                   ],
                 )
@@ -104,9 +116,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                 child: const Text('Магазин',),
                 onPressed: () {
-
                   setState(() {
-                   
                   });
                 },
               )),
@@ -155,10 +165,12 @@ class _MainPageState extends State<MainPage> {
       );
     } else if(tapCount >= 1000 && tapCount < 1000000){
       double deatCount = tapCount/1000;
+      deatCount.toStringAsFixed(3);
+      String tt =  (deatCount).toStringAsFixed(2);
       return Align(
           alignment: const Alignment(0.0, -2),
           child: Text(
-              'Score: $deatCount''K',
+              'Score: $tt''K',
               textDirection: TextDirection.ltr, // текст слева направо
               style: const TextStyle(fontSize: 24,
                 color: Colors.black,
@@ -179,10 +191,11 @@ class _MainPageState extends State<MainPage> {
       );
     } else if(tapCount >= 1000000){
       double deatCount = tapCount/1000000;
+     String tt =  (deatCount).toStringAsFixed(2);
       return Align(
           alignment: const Alignment(0.0, -2),
           child: Text(
-              'Score: $deatCount''M',
+              'Score: $tt''M',
               textDirection: TextDirection.ltr, // текст слева направо
               style: const TextStyle(fontSize: 24,
                 color: Colors.black,
@@ -272,5 +285,38 @@ class _MainPageState extends State<MainPage> {
       return Container();
     }
   }
+
+  Widget _textCountForPet1(){
+    if(tapFlag == false){
+      return  Text("+$petPower1");
+    }else{
+      return Container();
+    }
+  }
+
+  Widget _textCountForPet2(){
+    if(tapFlag == false){
+      return  Text("+$petPower2");
+    }else{
+      return Container();
+    }
+  }
+
+  Widget _textCountForPet3(){
+    if(tapFlag == false){
+      return  Text("+$petPower3");
+    }else{
+      return Container();
+    }
+  }
+
+  Widget _textCountForPet4(){
+    if(tapFlag == false){
+      return Text("+$petPower4");
+    }else{
+      return Container();
+    }
+  }
+
 }
 
