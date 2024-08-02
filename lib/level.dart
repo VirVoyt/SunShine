@@ -71,17 +71,13 @@ class _MainPageState extends State<MainPage> {
                     ),
                     child: Stack(
                       children: [
-                        Container(alignment:   const Alignment(-0.75, 0.8), child: _pet(),),
-                        Container(alignment: const Alignment(-0.63, 0.5), child: _textCountForPet1(),),
+                        Container(alignment: const Alignment(-0.75, 0.8), child: _pet(),),
 
                         Container(alignment: const Alignment(0.75, -0.75), child: _pet2(),),
-                        Container(alignment: const Alignment(0.65, -0.85), child: _textCountForPet2(),),
 
                         Container(alignment: const Alignment(-0.75, -0.8), child: _pet3(),),
-                        Container(alignment: const Alignment(-0.65, -0.85), child: _textCountForPet3(),),
 
                         Container(alignment: const Alignment(0.75, 0.7), child: _pet4(),),
-                        Container(alignment: const Alignment(0.65, 0.47), child: _textCountForPet4(),),
 
                         Container( alignment: const Alignment(0.0, -0.85),child: _score()),
                       ],
@@ -213,6 +209,10 @@ class _MainPageState extends State<MainPage> {
           decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage(tapFlag ? "assets/pet.png" : "assets/petHit.png" ))
           ),
+          child: Container(alignment: const Alignment(0, -1.5),
+              child:
+              _textCountForPet1()
+          ),
         ),
       );
     } else {
@@ -229,6 +229,10 @@ class _MainPageState extends State<MainPage> {
         child: Container(
           decoration:  BoxDecoration(
               image: DecorationImage(image: AssetImage(tapFlag ?  "assets/бабочка.png" : "assets/бабочкаHit.png"))
+          ),
+          child: Container(
+            alignment: const Alignment(0, -1.5),
+            child: _textCountForPet2(),
           ),
         ),
       );
@@ -247,6 +251,8 @@ class _MainPageState extends State<MainPage> {
           decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage(tapFlag ? "assets/облако.png" : "assets/облакоHit.png"))
           ),
+          child: Container(alignment: const Alignment(0, -1.3),
+          child: _textCountForPet3()),
         ),
       );
     } else {
@@ -264,6 +270,8 @@ class _MainPageState extends State<MainPage> {
           decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage(tapFlag ? "assets/жук.png" : "assets/жукHit.png" ))
           ),
+          child: Container(alignment: const Alignment(0, -1.3),
+          child: _textCountForPet4()),
         ),
       );
     } else {
