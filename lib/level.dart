@@ -55,34 +55,35 @@ class _MainPageState extends State<MainPage> {
               setState(() {
                 tapFlag = true;
               });
-            } ,
-            child: Container(               // отвечает за декорацию фона
+            } ,// отвечает за декорацию фона
+            child: Container(
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
-                    image: DecorationImage(image: AssetImage("assets/backGround.png"))
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage("assets/backGround.png"))
                 ),
                 child:   Container(              //ндекорация главного объекта
-                    width: 300,
-                    height: 300,
+
                     alignment: Alignment.center,
                     decoration:  BoxDecoration(
                         image: DecorationImage(image: AssetImage(tapFlag ? "assets/sunMain.png" : "assets/sunLight.png" ))
                     ),
                     child: Stack(
                       children: [
-                        Container(alignment: const Alignment(-1.8, 2.5), child: _pet(),),
-                        Container(alignment: const Alignment(-1.25, 1.3), child: _textCountForPet1(),),
+                        Container(alignment:   const Alignment(-0.75, 0.8), child: _pet(),),
+                        Container(alignment: const Alignment(-0.63, 0.5), child: _textCountForPet1(),),
 
-                        Container(alignment: const Alignment(1.5, -2), child: _pet2(),),
-                        Container(alignment: const Alignment(1.05, -1.85), child: _textCountForPet2(),),
+                        Container(alignment: const Alignment(0.75, -0.75), child: _pet2(),),
+                        Container(alignment: const Alignment(0.65, -0.85), child: _textCountForPet2(),),
 
-                        Container(alignment: const Alignment(-1.5, -2.5), child: _pet3(),),
-                        Container(alignment: const Alignment(-1.1, -2.1), child: _textCountForPet3(),),
+                        Container(alignment: const Alignment(-0.75, -0.8), child: _pet3(),),
+                        Container(alignment: const Alignment(-0.65, -0.85), child: _textCountForPet3(),),
 
-                        Container(alignment: const Alignment(1.8, 2), child: _pet4(),),
-                        Container(alignment: const Alignment(1.3, 1.1), child: _textCountForPet4(),),
+                        Container(alignment: const Alignment(0.75, 0.7), child: _pet4(),),
+                        Container(alignment: const Alignment(0.65, 0.47), child: _textCountForPet4(),),
 
-                        Container(child: _score()),
+                        Container( alignment: const Alignment(0.0, -0.85),child: _score()),
                       ],
                     )
                 )
@@ -90,10 +91,11 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         Container(
-          height: 52.6,
-          width: 1000,
+          height: 40,
           decoration: const BoxDecoration(
-              image:  DecorationImage( image: AssetImage("assets/1.jpg"))),
+              image:  DecorationImage
+                (fit: BoxFit.fill,
+                  image: AssetImage("assets/12.png"))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -133,9 +135,7 @@ class _MainPageState extends State<MainPage> {
   //виджет для вывода текста
   Widget _score(){
     if(tapCount < 1000) {
-      return Align(
-          alignment: const Alignment(0.0, -2),
-          child: Text(
+      return Text(
               'Score: $tapCount',
               textDirection: TextDirection.ltr, // текст слева направо
               style: const TextStyle(fontSize: 24,
@@ -153,15 +153,12 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ],
               ) // высота шрифта 24
-          )
       );
     } else if(tapCount >= 1000 && tapCount < 1000000){
       double deatCount = tapCount/1000;
       deatCount.toStringAsFixed(3);
       String tt =  (deatCount).toStringAsFixed(2);
-      return Align(
-          alignment: const Alignment(0.0, -2),
-          child: Text(
+      return  Text(
               'Score: $tt''K',
               textDirection: TextDirection.ltr, // текст слева направо
               style: const TextStyle(fontSize: 24,
@@ -179,14 +176,11 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ],
               ) // высота шрифта 24
-          )
       );
     } else if(tapCount >= 1000000){
       double deatCount = tapCount/1000000;
       String tt =  (deatCount).toStringAsFixed(2);
-      return Align(
-          alignment: const Alignment(0.0, -2),
-          child: Text(
+      return Text(
               'Score: $tt''M',
               textDirection: TextDirection.ltr, // текст слева направо
               style: const TextStyle(fontSize: 24,
@@ -204,7 +198,6 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ],
               ) // высота шрифта 24
-          )
       );
     }
     else{ return Container();}
