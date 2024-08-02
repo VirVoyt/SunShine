@@ -2,9 +2,11 @@
 
 part of 'game_demo.dart';
 
-double tapCount = 0;
+double data = 0;
 bool tapFlag = true;
 double opacity = 0.5;
+
+double tapCount = data;
 
 bool petBuy1 = true;
 int petPower1 = 0;

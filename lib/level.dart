@@ -9,20 +9,20 @@ class Level extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: MainPage(),
+        body: LevelPage(),
       ),
     );
   }
 }
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class LevelPage extends StatefulWidget {
+  const LevelPage({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<LevelPage> createState() => _LevelPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _LevelPageState extends State<LevelPage> {
 
 
   //эти параметры будут устанавливать путем покупки чего-либо из магазина
@@ -115,7 +115,6 @@ class _MainPageState extends State<MainPage> {
               )],
           ),
         )],
-
     );
   }
 }
