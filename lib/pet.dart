@@ -13,13 +13,21 @@ Widget _pet(){
             image: DecorationImage(image: AssetImage(tapFlag ? "assets/pet.png" : "assets/petHit.png" ))
         ),
         child: Container(alignment: const Alignment(0, -1.5),
-            child:
-            _textCountForPet1()
+            //   child:
+          //   _textCountForPet1()
         ),
       ),
     );
   } else {
-    return Container();
+    return SizedBox(
+      width: 100,
+      height: 100,
+      child: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/petFalse.png"))
+        ),
+      ),
+    );
   }
 }
 
@@ -34,18 +42,26 @@ Widget _pet2(){
             image: DecorationImage(image: AssetImage(tapFlag ?  "assets/бабочка.png" : "assets/бабочкаHit.png"))
         ),
         child: Container(
-          alignment: const Alignment(0, -1.5),
-          child: _textCountForPet2(),
+          // alignment: const Alignment(0, -1.5),
+          // child: _textCountForPet2(),
         ),
       ),
     );
   } else {
-    return Container();
+    return SizedBox(
+      width: 100,
+      height: 100,
+      child: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/petFalse.png"))
+        ),
+        ),
+    );
   }
 }
 
 Widget _pet3(){
-  if (petBuy2 == true){
+  if (petBuy3 == true){
     petPower3 = 7;
     return SizedBox(
       width: 100,
@@ -54,17 +70,25 @@ Widget _pet3(){
         decoration: BoxDecoration(
             image: DecorationImage(image: AssetImage(tapFlag ? "assets/облако.png" : "assets/облакоHit.png"))
         ),
-        child: Container(alignment: const Alignment(0, -1.3),
-            child: _textCountForPet3()),
+          //  child: Container(alignment: const Alignment(0, -1.3),
+        // child: _textCountForPet3()),
       ),
     );
   } else {
-    return Container();
+    return SizedBox(
+      width: 100,
+      height: 100,
+      child: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/petFalse.png"))
+        ),
+      ),
+    );
   }
 }
 
 Widget _pet4(){
-  if (petBuy2 == true){
+  if (petBuy4 == true){
     petPower4 = 9;
     return SizedBox(
       width: 100,
@@ -73,12 +97,20 @@ Widget _pet4(){
         decoration: BoxDecoration(
             image: DecorationImage(image: AssetImage(tapFlag ? "assets/жук.png" : "assets/жукHit.png" ))
         ),
-        child: Container(alignment: const Alignment(0, -1.3),
-            child: _textCountForPet4()),
+       // child: Container(alignment: const Alignment(0, -1.3),
+        //    child: _textCountForPet4()),
       ),
     );
   } else {
-    return Container();
+    return SizedBox(
+      width: 100,
+      height: 100,
+      child: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/petFalse.png"))
+        ),
+      ),
+    );
   }
 }
 

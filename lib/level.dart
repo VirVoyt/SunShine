@@ -33,7 +33,15 @@ class _LevelPageState extends State<LevelPage> {
     return Column(
       children: <Widget>[
         Expanded(
-          child:  Listener(
+          child:
+          Container(
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage("assets/level1.jpg"))
+            ),
+          child: Listener(
             //отвечает за нажатие по фону
             onPointerDown: (b){
               setState(() {
@@ -46,18 +54,11 @@ class _LevelPageState extends State<LevelPage> {
                 tapFlag = true;
               });
             } ,// отвечает за декорацию фона
-            child: Container(
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage("assets/backGround.png"))
-                ),
-                child:   Container(              //ндекорация главного объекта
 
+                child:   Container(              //ндекорация главного объекта
                     alignment: Alignment.center,
                     decoration:  BoxDecoration(
-                        image: DecorationImage(image: AssetImage(tapFlag ? "assets/sunMain.png" : "assets/sunLight.png" ))
+                        image: DecorationImage(image: AssetImage(tapFlag ? "assets/sunv1.png" : "assets/sunv12.png" ))
                     ),
                     child: Stack(
                       children: [
@@ -70,6 +71,7 @@ class _LevelPageState extends State<LevelPage> {
                         Container(alignment: const Alignment(0.75, 0.7), child: _pet4(),),
 
                         Container( alignment: const Alignment(0.0, -0.85),child: _score()),
+
                       ],
                     )
                 )
@@ -77,7 +79,7 @@ class _LevelPageState extends State<LevelPage> {
           ),
         ),
         Container(
-          height: 40,
+          height: 45,
           decoration: const BoxDecoration(
               image:  DecorationImage
                 (fit: BoxFit.fill,
@@ -89,12 +91,15 @@ class _LevelPageState extends State<LevelPage> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: Colors.red
+                        backgroundColor: Colors.deepOrange[900]
                     ),
-                    child: const Text('Магазин',),
+                    child: const Text('Главное Меню',),
                     onPressed: () {
                       setState(() {
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const MainPage()),
+                        );
                       });
                     },
                   )),
@@ -102,17 +107,35 @@ class _LevelPageState extends State<LevelPage> {
                 child:  ElevatedButton(
                   style:(ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Colors.orange
+                      backgroundColor: Colors.amber[600]
                   )),
                   child: const Text(
-                    'Выбор уровная',
+                    'Магазин',
                   ),
                   onPressed: () {
-                    //функционал для выбора уровня
 
                   },
                 ),
-              )],
+              ),
+              Align(
+                alignment: const Alignment(0.5, 0),
+                child:  ElevatedButton(
+                  style:(ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.pink[900]
+                  )),
+                  child: const Text(
+                    'Выбор Уровня',
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const _MapPage()),
+                    );
+                  },
+                ),
+              )
+            ],
           ),
         )],
     );
