@@ -4,8 +4,6 @@
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
 В процессе мы познакомимся с языком Dart и технологией flutter. 
 
 Будет создана наша первая игра-кликер на флаттер
