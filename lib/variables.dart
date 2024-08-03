@@ -8,7 +8,7 @@ double opacity = 0.5;
 
 double tapCount = data;
 
-bool petBuy1 = true;
+bool petBuy1 = false;
 int petPower1 = 0;
 bool petBuy2 = true;
 int petPower2 = 0;
