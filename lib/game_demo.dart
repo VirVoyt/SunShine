@@ -12,3 +12,5 @@ part 'restoreScore.dart';
 part 'start_screen.dart';
 part 'changeLevel.dart';
 part 'map.dart';
+part 'level2.dart';
+part 'level3.dart';
