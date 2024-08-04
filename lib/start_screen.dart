@@ -51,10 +51,13 @@ class _MainPageState extends State<MainPage> {
                             alignment: const Alignment(0, 0.6),
                             child: const Text("Tap To Start")),
 
-                       Container(
+                       Align(
                             alignment: const Alignment(0,-1),
-                         child: Image.asset("assets/лого.png" ),
-                            ),
+                         child: SizedBox(
+                           width: 300,
+                         height: 200,
+                         child: Image.asset("assets/logo.png" ),
+                            ),)
                       ],
                     ),
                   ),

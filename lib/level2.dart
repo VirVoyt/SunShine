@@ -1,28 +1,28 @@
-//здесь происходит компоновка первого уровня
+//здесь происходит компоновка второгоw уровня
 
 part of 'game_demo.dart';
 
-class Level extends StatelessWidget {
-  const Level({super.key});
+class Level2 extends StatelessWidget {
+  const Level2({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: LevelPage(),
+        body: LevelPage2(),
       ),
     );
   }
 }
 
-class LevelPage extends StatefulWidget {
-  const LevelPage({super.key});
+class LevelPage2 extends StatefulWidget {
+  const LevelPage2({super.key});
 
   @override
-  State<LevelPage> createState() => _LevelPageState();
+  State<LevelPage2> createState() => _LevelPage2State();
 }
 
-class _LevelPageState extends State<LevelPage> {
+class _LevelPage2State extends State<LevelPage2> {
 
 
   //эти параметры будут устанавливать путем покупки чего-либо из магазина
@@ -30,6 +30,7 @@ class _LevelPageState extends State<LevelPage> {
 
   @override
   Widget build(BuildContext context) {
+    levelBackSave = 2;
     return Column(
       children: <Widget>[
         Expanded(
@@ -39,14 +40,14 @@ class _LevelPageState extends State<LevelPage> {
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: AssetImage("assets/level1v2.jpg"))
+                    image: AssetImage("assets/level2.png"))
             ),
           child: Listener(
             //отвечает за нажатие по фону
             onPointerDown: (b){
               setState(() {
                 tapFlag = false;
-                tapCount = tapCount + 1 * multiplier * power + petPower1 + petPower2 + petPower3 + petPower4;
+                tapCount = tapCount + 1 * multiplier2 * power + petPower1 + petPower2 + petPower3 + petPower4;
               });
             },
             onPointerUp: (P){
@@ -58,17 +59,17 @@ class _LevelPageState extends State<LevelPage> {
                 child:   Container(              //ндекорация главного объекта
                     alignment: Alignment.center,
                     decoration:  BoxDecoration(
-                        image: DecorationImage(image: AssetImage(tapFlag ? "assets/sunlevel1.png" : "assets/sunlevel1h.png" ))
+                        image: DecorationImage(image: AssetImage(tapFlag ? "assets/sunlevel3.png" : "assets/sunlevel3h.png" ))
                     ),
                     child: Stack(
                       children: [
-                        Container(alignment: const Alignment(-0.70, 0.85), child: _pet(1),),
+                        Container(alignment: const Alignment(-0.6, 0.9), child: _pet(2),),
 
-                        Container(alignment: const Alignment(0.75, -0.75), child: _pet2(1),),
+                        Container(alignment: const Alignment(-1, 0.05), child: _pet2(2),),
 
-                        Container(alignment: const Alignment(-0.75, -0.8), child: _pet3(1),),
+                        Container(alignment: const Alignment(0.65, -0.8), child: _pet3(2),),
 
-                        Container(alignment: const Alignment(0.75, 0.8), child: _pet4(1),),
+                        Container(alignment: const Alignment(0.75, 0.6), child: _pet4(2),),
 
                         Container( alignment: const Alignment(0.0, -0.85),child: _score()),
 

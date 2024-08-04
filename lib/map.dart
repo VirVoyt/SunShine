@@ -55,7 +55,7 @@ class _MapPageState extends State<_MapPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Level()),
+                          MaterialPageRoute(builder: (context) => const Level2()),
                         );
                       },
                       style: ButtonStyle(
@@ -79,7 +79,7 @@ class _MapPageState extends State<_MapPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Level()),
+                          MaterialPageRoute(builder: (context) => const Level3()),
                         );
                       },
                       style: ButtonStyle(
@@ -101,10 +101,19 @@ class _MapPageState extends State<_MapPage> {
                     alignment: const Alignment(-1, -0.97),
                     child: ElevatedButton(
                       onPressed: () {
+                        if(levelBackSave == 1){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Level()),
-                        );
+                          MaterialPageRoute(builder: (context) => const Level()),);
+                        } else if (levelBackSave == 2){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const Level2()),);
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const Level3()),);
+                        }
                       },
                       style: ButtonStyle(
                         shape: WidgetStateProperty.all(const CircleBorder()),
