@@ -31,10 +31,19 @@ class _MainPageState extends State<MainPage> {
             child: GestureDetector(
                 onTap:(){
                   setState(() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Level()),
-                    );
+                    if(levelBackSave == 1){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Level()),);
+                    } else if (levelBackSave == 2){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Level2()),);
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Level3()),);
+                    }
                   });
                 },
               child: Container(
@@ -48,16 +57,23 @@ class _MainPageState extends State<MainPage> {
                     Stack(
                       children: [
                         Container(
-                            alignment: const Alignment(0, 0.6),
-                            child: const Text("Tap To Start")),
-
+                            alignment: const Alignment(0, 0.7),
+                            child:AnimatedOpacity(
+                                opacity: opacity == 1 ? 0: 1,
+                                duration: const Duration(seconds: 1),
+                                child:SizedBox(
+                                  width: 200,
+                                  height: 100,
+                                  child: Image.asset("assets/taptoplay.png" ),
+                                ))),
                        Align(
-                            alignment: const Alignment(0,-1),
+                         alignment: const Alignment(0,-1),
                          child: SizedBox(
                            width: 300,
                          height: 200,
-                         child: Image.asset("assets/logo.png" ),
-                            ),)
+                             child: Image.asset("assets/logo.png" ),
+                            ),),
+                        Container(child: changeOpacity(),)
                       ],
                     ),
                   ),
@@ -67,4 +83,12 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
+  changeOpacity() {
+    Future.delayed( const Duration(seconds: 1), () {
+      setState(() {
+        opacity = opacity == 0.0 ? 1.0 : 0.0;
+        changeOpacity();
+      });
+    });
+  }
 }
