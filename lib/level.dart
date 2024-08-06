@@ -30,6 +30,8 @@ class _LevelPageState extends State<LevelPage> {
 
   @override
   Widget build(BuildContext context) {
+    levelBackSave = 1;
+    _shopChange();
     return Column(
       children: <Widget>[
         Expanded(
@@ -46,7 +48,7 @@ class _LevelPageState extends State<LevelPage> {
             onPointerDown: (b){
               setState(() {
                 tapFlag = false;
-                tapCount = tapCount + 1 * multiplier * power + petPower1 + petPower2 + petPower3 + petPower4;
+               _scoreCount();
               });
             },
             onPointerUp: (P){
@@ -58,17 +60,17 @@ class _LevelPageState extends State<LevelPage> {
                 child:   Container(              //ндекорация главного объекта
                     alignment: Alignment.center,
                     decoration:  BoxDecoration(
-                        image: DecorationImage(image: AssetImage(tapFlag ? "assets/sunlevel1.png" : "assets/sunlevel1h.png" ))
+                        image: DecorationImage(image: AssetImage(tapFlag ? "assets/sunv1.png" : "assets/sunv1h.png" ))
                     ),
                     child: Stack(
                       children: [
-                        Container(alignment: const Alignment(-0.70, 0.85), child: _pet(1),),
+                        Container(alignment: const Alignment(-0.70, 0.85), child: _pet(),),
 
-                        Container(alignment: const Alignment(0.75, -0.75), child: _pet2(1),),
+                        Container(alignment: const Alignment(0.75, -0.75), child: _pet2(),),
 
-                        Container(alignment: const Alignment(-0.75, -0.8), child: _pet3(1),),
+                        Container(alignment: const Alignment(-0.75, -0.8), child: _pet3(),),
 
-                        Container(alignment: const Alignment(0.75, 0.8), child: _pet4(1),),
+                        Container(alignment: const Alignment(0.75, 0.8), child: _pet4(),),
 
                         Container( alignment: const Alignment(0.0, -0.85),child: _score()),
 
@@ -93,7 +95,10 @@ class _LevelPageState extends State<LevelPage> {
                         foregroundColor: Colors.white,
                         backgroundColor: Colors.deepOrange[900]
                     ),
-                    child: const Text('Главное Меню',),
+                    child: const Text('Главное Меню',
+                      style: TextStyle(
+                          color: Colors.black
+                      ),),
                     onPressed: () {
                       setState(() {
                         Navigator.push(
@@ -111,9 +116,17 @@ class _LevelPageState extends State<LevelPage> {
                   )),
                   child: const Text(
                     'Магазин',
+                    style: TextStyle(
+                        color: Colors.black
+                    ),
                   ),
                   onPressed: () {
-
+                    setState(() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ShopPage()),
+                      );
+                    });
                   },
                 ),
               ),
@@ -126,6 +139,9 @@ class _LevelPageState extends State<LevelPage> {
                   )),
                   child: const Text(
                     'Выбор Уровня',
+                    style: TextStyle(
+                      color: Colors.black
+                    ),
                   ),
                   onPressed: () {
                     Navigator.push(

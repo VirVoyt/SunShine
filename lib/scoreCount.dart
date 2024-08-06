@@ -12,12 +12,12 @@ Widget _score(){
           shadows: <Shadow>[
             Shadow(
               offset: Offset(1.0, 1.0),
-              blurRadius: 2.0,
+              blurRadius: 10.0,
               color: Color.fromARGB(128, 0, 0, 0),
             ),
             Shadow(
               offset: Offset(1.0, 1.0),
-              blurRadius: 2.0,
+              blurRadius: 10.0,
               color: Color.fromARGB(128, 0, 0, 0),
             ),
           ],

@@ -45,7 +45,7 @@ class _MapPageState extends State<_MapPage> {
                       child: const Text("1",
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
-                        color: Colors.brown
+                        color: Colors.black
                       ),),
                     ),
                   ),
@@ -53,10 +53,16 @@ class _MapPageState extends State<_MapPage> {
                     alignment: const Alignment(0.45, 0.6),
                     child: ElevatedButton(
                       onPressed: () {
+                        if (levelBuy2 == true){
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const Level2()),
-                        );
+                        );} else{
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const ShopPage()),
+                          );
+                        }
                       },
                       style: ButtonStyle(
                         shape: WidgetStateProperty.all(const CircleBorder()),
@@ -66,21 +72,27 @@ class _MapPageState extends State<_MapPage> {
                           if (states.contains(WidgetState.pressed)) return Colors.greenAccent; // <-- Splash color
                         }),
                       ),
-                      child: const Text("2",
+                      child: levelBuy2 ? const Text("2",
                       style: TextStyle(
                           fontWeight: FontWeight.w900,
                         color: Colors.black
-                      ),),
+                      ),): const Icon(Icons.lock, color: Colors.black,),
                     ),
                   ),
                   Container(
                     alignment: const Alignment(-0.21, -0.16),
                     child: ElevatedButton(
                       onPressed: () {
+                        if(levelBuy3 == true){
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const Level3()),
-                        );
+                        );} else{
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const ShopPage()),
+                          );
+                        }
                       },
                       style: ButtonStyle(
                         shape: WidgetStateProperty.all(const CircleBorder()),
@@ -90,30 +102,18 @@ class _MapPageState extends State<_MapPage> {
                           if (states.contains(WidgetState.pressed)) return Colors.purple; // <-- Splash color
                         }),
                       ),
-                      child: const Text("3",
+                      child: levelBuy3 ? const Text("3",
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: Colors.brown
-                      ),),
+                      ),) : const Icon(Icons.lock, color: Colors.black,),
                     ),
                   ),
                   Container(
                     alignment: const Alignment(-1, -0.97),
                     child: ElevatedButton(
                       onPressed: () {
-                        if(levelBackSave == 1){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Level()),);
-                        } else if (levelBackSave == 2){
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const Level2()),);
-                        } else {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const Level3()),);
-                        }
+                       _levelBack(context);
                       },
                       style: ButtonStyle(
                         shape: WidgetStateProperty.all(const CircleBorder()),
@@ -137,7 +137,7 @@ class _MapPageState extends State<_MapPage> {
               onPressed:(){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const StartPage()),
+                MaterialPageRoute(builder: (context) =>  const ShopPage()),
                 );
               },
               tooltip: 'Магазин',
@@ -146,3 +146,4 @@ class _MapPageState extends State<_MapPage> {
     );
   }
 }
+
