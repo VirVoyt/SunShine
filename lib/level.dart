@@ -113,23 +113,20 @@ class _LevelPageState extends State<LevelPage> {
   double y = 0.0;
 
   void _incrementDown(PointerEvent details) {
-    _updateLocation(details);
     setState(() {
       tapFlag = false;
       opacityLevel = 1.0;
       _scoreCount();
-    });
-  }
-
-  void _updateLocation(PointerEvent details) {
-    setState(() {
       x = details.position.dx;
       y = details.position.dy;
     });
   }
 
-  void _changeOpacity() {
-    setState(() => opacityLevel = opacityLevel == 0 ? 1.0 : 0.0);
+  void _changeOpacity(details) {
+    setState(() {
+      tapFlag = true;
+      opacityLevel = 0.0;
+    });
   }
 
   @override
@@ -141,12 +138,7 @@ class _LevelPageState extends State<LevelPage> {
           child: Listener(
             //отвечает за нажатие по фону
             onPointerDown:_incrementDown,
-            onPointerUp: (PointerEvent details){
-              setState(() {
-                tapFlag = true;
-                opacityLevel = 0.0;
-              });
-            },
+            onPointerUp: _changeOpacity,
           child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -170,6 +162,7 @@ class _LevelPageState extends State<LevelPage> {
                         Container(alignment:  Alignment(x4, y4), child: _pet4(),),
 
                         Container(alignment: const Alignment(0.0, -0.85),child: _score()),
+
                       Align(
                         alignment: FractionalOffset(x/MediaQuery.sizeOf(context).width ,
                             y/(MediaQuery.sizeOf(context).height-45)),
