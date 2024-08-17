@@ -108,7 +108,7 @@ class LevelPage extends StatefulWidget {
 
 class _LevelPageState extends State<LevelPage> {
 
-  double opacityLevel = 1.0;
+  double opacityLevel = 0.0;
   double x = 0.0;
   double y = 0.0;
 
@@ -372,11 +372,7 @@ class _ShopPage extends State<ShopPage> {
   }
 }
 
-
-
 class _MapPage extends StatelessWidget{
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -459,19 +455,17 @@ class _MapPage extends StatelessWidget{
                       onPressed: () {
                         if(levelBuy3 == true){
                           levelBackSave = 3;
-                          load.loadLevel();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const Level()),
-                          );} else{
+                        } else if(levelBuy2 == true){
                           levelBackSave = 2;
-                          load.loadLevel();
-                          _shopChange();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const ShopPage()),
-                          );
+                        }else{
+                          levelBackSave = 1;
                         }
+                        load.loadLevel();
+                        _shopChange();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ShopPage()),
+                        );
                       },
                       style: ButtonStyle(
                         shape: WidgetStateProperty.all(const CircleBorder()),
