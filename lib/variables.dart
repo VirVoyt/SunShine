@@ -6,7 +6,7 @@ double data = 0;
 bool tapFlag = true;
 double opacity = 0.5;
 
-double tapCount = data;
+int tapCount = 200000;
 
 bool petBuy1 = false;
 bool petBuy2 = false;
@@ -33,7 +33,9 @@ int petPower23 = 0;
 int petPower33 = 0;
 int petPower43 = 0;
 int multiplier = 1;
+bool stop = false;
 
+double x1 = 0, y1 = 0, x2 = 0, y2 = 0, x3 = 0, y3 = 0, x4 = 0, y4 = 0;
 
 int levelBackSave = 1;
 bool levelBuy2 = false;
@@ -44,4 +46,9 @@ List<int> price = [];
 List<String> price2 = [];
 List<String> description = [];
 List colorCodes = [];
+
 var picture = [];
+var level = [];
+var forAll = [];
+int petPowerSum = 0;
+String? text;

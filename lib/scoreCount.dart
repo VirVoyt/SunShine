@@ -25,7 +25,6 @@ Widget _score(){
     );
   } else if(tapCount >= 1000 && tapCount < 1000000){
     double deatCount = tapCount/1000;
-    deatCount.toStringAsFixed(3);
     String tt =  (deatCount).toStringAsFixed(2);
     return  Text(
         'Score: $tt''K',
