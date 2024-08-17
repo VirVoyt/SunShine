@@ -158,11 +158,10 @@ _scoreCount(){
   }
   if(out < 1000){
     text = out.toString();
-
   } else if(out <= 1000000 && out >=1000){
-    text = (out/1000).toStringAsFixed(2) + "K";
+    text = "${(out/1000).toStringAsFixed(2)}K";
   } else{
-    text = (out/1000000).toStringAsFixed(2) + "M";
+    text = "${(out/1000000).toStringAsFixed(2)}M";
   }
 }
 
