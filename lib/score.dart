@@ -1,7 +1,8 @@
 part of 'game_demo.dart';
 
 class Data {
-  saveScore() async{
+   Future saveScore() async {
+     final prefs = await SharedPreferences.getInstance();
     Map data = {
       'tapCount': tapCount,
       'levelBackSave': levelBackSave,
@@ -19,29 +20,33 @@ class Data {
       'petBuy33': petBuy33,
       'petBuy43': petBuy43,
     };
-    var encoded = json.encode(data);   // преобразуем в json
-    File file = File("data.json");
-    await file.writeAsString(encoded);
+     JsonEncoder encoder = const JsonEncoder();
+     String json = encoder.convert(data);
+     prefs.setString('data', json);
   }
 
-  restoreScore()async {
-    final data = await File("data.json").readAsString();
-    final decoded = json.decode(data);
+ Future restoreScore() async {
+    final prefs = await SharedPreferences.getInstance();
+    final json = prefs.getString('data');
+    if (json == null) return;
 
-    tapCount = decoded['tapCount'];
-    multiplier = decoded['multiplier'];
-    levelBackSave = decoded['levelBackSave'];
-    petBuy1 = decoded['petBuy1'];
-    petBuy2 = decoded['petBuy2'];
-    petBuy3 = decoded['petBuy3'];
-    petBuy4 = decoded['petBuy4'];
-    petBuy12 = decoded['petBuy12'];
-    petBuy22 = decoded['petBuy22'];
-    petBuy32 = decoded['petBuy32'];
-    petBuy42 = decoded['petBuy42'];
-    petBuy13 = decoded['petBuy13'];
-    petBuy23 = decoded['petBuy23'];
-    petBuy33 = decoded['petBuy33'];
-    petBuy43 = decoded['petBuy43'];
+    JsonDecoder decoder = const JsonDecoder();
+    Map data = decoder.convert(json);
+
+    tapCount = data['tapCount'];
+    multiplier = data['multiplier'];
+    levelBackSave = data['levelBackSave'];
+    petBuy1 = data['petBuy1'];
+    petBuy2 = data['petBuy2'];
+    petBuy3 = data['petBuy3'];
+    petBuy4 = data['petBuy4'];
+    petBuy12 = data['petBuy12'];
+    petBuy22 = data['petBuy22'];
+    petBuy32 = data['petBuy32'];
+    petBuy42 = data['petBuy42'];
+    petBuy13 = data['petBuy13'];
+    petBuy23 = data['petBuy23'];
+    petBuy33 = data['petBuy33'];
+    petBuy43 = data['petBuy43'];
   }
 }

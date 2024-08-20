@@ -416,3 +416,16 @@ class Load {
   }
 }
 
+
+
+click(){
+  player.setAsset('assets/click.wav');
+  player.setVolume(volume);
+  player.play();
+}
+
+tap(){
+  player.setAsset('assets/hit.wav');
+  player.setVolume(volume);
+  player.play();
+}

@@ -35,6 +35,7 @@ class _MainPageState extends State<MainPage> {
             child: GestureDetector(
               onTap:(){
                 setState(() {
+                  tap();
                   _levelBack(context);
                   stop = true;
                 });
@@ -66,7 +67,7 @@ class _MainPageState extends State<MainPage> {
                         height: 200,
                         child: Image.asset("assets/logo.png" ),
                       ),),
-                    Container(child: changeOpacity(),)
+                    Container(child: changeOpacity(),),
                   ],
                 ),
               ),
@@ -75,7 +76,6 @@ class _MainPageState extends State<MainPage> {
         ],)
     );
   }
-
   changeOpacity()  {
     if(stop == false){
      Future.delayed( const Duration(seconds: 1), () {
@@ -101,6 +101,7 @@ class Level extends StatelessWidget {
   }
 }
 
+
 class LevelPage extends StatefulWidget {
   const LevelPage({super.key});
 
@@ -115,7 +116,6 @@ class _LevelPageState extends State<LevelPage> {
   double y = 0.0;
 
 
-
   void _incrementDown(PointerEvent details) async {
     setState(() {
       tapFlag = false;
@@ -124,6 +124,7 @@ class _LevelPageState extends State<LevelPage> {
       x = details.position.dx;
       y = details.position.dy;
       data.saveScore();
+      click();
     });
   }
 
@@ -140,7 +141,9 @@ class _LevelPageState extends State<LevelPage> {
     return Column(
       children: <Widget>[
         Expanded(
-          child: Listener(
+
+          child:Stack( children: [
+          Listener(
             //отвечает за нажатие по фону
             onPointerDown:_incrementDown,
             onPointerUp: _changeOpacity,
@@ -186,7 +189,21 @@ class _LevelPageState extends State<LevelPage> {
                 )
           ),
           ),
-        ),
+
+            Container(alignment: const Alignment(-0.995, -0.99),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.deepOrange[900]),
+                  onPressed: (){
+                    setState(() {
+                      volume = volume == 1 ? volume = 0 : volume = 1;
+                      musicOff = !musicOff;
+                    });
+                  },
+                  child: musicOff ? const Icon( Icons.music_note ) : const Icon(Icons.music_off),
+                )),
+        ])),
         Container(
           height: 45,
           decoration: BoxDecoration(
@@ -208,6 +225,7 @@ class _LevelPageState extends State<LevelPage> {
                       ),),
                     onPressed: () {
                       setState(() {
+                        tap();
                         stop = false;
                         Navigator.push(
                           context,
@@ -230,6 +248,7 @@ class _LevelPageState extends State<LevelPage> {
                   ),
                   onPressed: () {
                     setState(() {
+                      tap();
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) =>  const ShopPage()),
@@ -252,6 +271,7 @@ class _LevelPageState extends State<LevelPage> {
                     ),
                   ),
                   onPressed: () {
+                    tap();
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) =>  _MapPage()),
@@ -314,6 +334,7 @@ class _ShopPage extends State<ShopPage> {
                                       setState(() {
                                     _buyPet(context, index);
                                     data.saveScore();
+                                    tap();
                                       })
                                     },
                                     style: ButtonStyle(
@@ -398,6 +419,7 @@ class _MapPage extends StatelessWidget{
                           context,
                           MaterialPageRoute(builder: (context) => const Level()),
                         );
+                        tap();
                       },
                       style: ButtonStyle(
                         shape: WidgetStateProperty.all(const CircleBorder()),
@@ -424,6 +446,7 @@ class _MapPage extends StatelessWidget{
                           } else {
                           levelBackSave = 1;
                         }
+                        tap();
                         load.loadLevel();
                         Navigator.push(
                           context,
@@ -457,7 +480,7 @@ class _MapPage extends StatelessWidget{
                         }else{
                           levelBackSave = 1;
                         }
-
+                        tap();
                         load.loadLevel();
                         _shopChange();
                         Navigator.push(
@@ -485,6 +508,7 @@ class _MapPage extends StatelessWidget{
                     child: ElevatedButton(
                       onPressed: () {
                         _levelBack(context);
+                        tap();
                       },
                       style: ButtonStyle(
                         shape: WidgetStateProperty.all(const CircleBorder()),
@@ -510,6 +534,7 @@ class _MapPage extends StatelessWidget{
             context,
             MaterialPageRoute(builder: (context) =>  const ShopPage()),
           );
+          tap();
         },
         tooltip: 'Магазин',
         child: const Icon(Icons.shop, color: Colors.black),
