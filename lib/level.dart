@@ -1,5 +1,7 @@
 part of 'game_demo.dart';
 
+Data data =Data();
+
 Load load = Load();
 
 class StartPage extends StatelessWidget {
@@ -112,24 +114,24 @@ class _LevelPageState extends State<LevelPage> {
   double x = 0.0;
   double y = 0.0;
 
-  void _incrementDown(PointerEvent details) {
-    _updateLocation(details);
+
+
+  void _incrementDown(PointerEvent details) async {
     setState(() {
       tapFlag = false;
       opacityLevel = 1.0;
       _scoreCount();
-    });
-  }
-
-  void _updateLocation(PointerEvent details) {
-    setState(() {
       x = details.position.dx;
       y = details.position.dy;
+      data.saveScore();
     });
   }
 
-  void _changeOpacity() {
-    setState(() => opacityLevel = opacityLevel == 0 ? 1.0 : 0.0);
+  void _changeOpacity(details) {
+    setState(() {
+      tapFlag = true;
+      opacityLevel = 0.0;
+    });
   }
 
   @override
@@ -141,12 +143,7 @@ class _LevelPageState extends State<LevelPage> {
           child: Listener(
             //отвечает за нажатие по фону
             onPointerDown:_incrementDown,
-            onPointerUp: (PointerEvent details){
-              setState(() {
-                tapFlag = true;
-                opacityLevel = 0.0;
-              });
-            },
+            onPointerUp: _changeOpacity,
           child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -170,6 +167,7 @@ class _LevelPageState extends State<LevelPage> {
                         Container(alignment:  Alignment(x4, y4), child: _pet4(),),
 
                         Container(alignment: const Alignment(0.0, -0.85),child: _score()),
+
                       Align(
                         alignment: FractionalOffset(x/MediaQuery.sizeOf(context).width ,
                             y/(MediaQuery.sizeOf(context).height-45)),
@@ -315,6 +313,7 @@ class _ShopPage extends State<ShopPage> {
                                     onPressed: () => {
                                       setState(() {
                                     _buyPet(context, index);
+                                    data.saveScore();
                                       })
                                     },
                                     style: ButtonStyle(
@@ -394,6 +393,7 @@ class _MapPage extends StatelessWidget{
                       onPressed: () {
                         levelBackSave = 1;
                         load.loadLevel();
+                        data.saveScore();
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const Level()),
@@ -420,19 +420,15 @@ class _MapPage extends StatelessWidget{
                       onPressed: () {
                         if (levelBuy2 == true){
                           levelBackSave = 2;
-                          load.loadLevel();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const Level()),
-                          );} else{
+                          data.saveScore();
+                          } else {
                           levelBackSave = 1;
-                          load.loadLevel();
-                          _shopChange();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const ShopPage()),
-                          );
                         }
+                        load.loadLevel();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const Level()),
+                        );
                       },
                       style: ButtonStyle(
                         shape: WidgetStateProperty.all(const CircleBorder()),
@@ -455,11 +451,13 @@ class _MapPage extends StatelessWidget{
                       onPressed: () {
                         if(levelBuy3 == true){
                           levelBackSave = 3;
+                          data.saveScore();
                         } else if(levelBuy2 == true){
                           levelBackSave = 2;
                         }else{
                           levelBackSave = 1;
                         }
+
                         load.loadLevel();
                         _shopChange();
                         Navigator.push(
