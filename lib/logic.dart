@@ -165,8 +165,6 @@ _scoreCount(){
   }
 }
 
-
-
 _shopChange(){
   if(levelBackSave == 1){
    users = ["Upgrade", "Александр", "Василий", "Святослав", "Мыкола", "Уровень 2"];
