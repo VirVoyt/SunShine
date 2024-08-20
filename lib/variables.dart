@@ -52,4 +52,8 @@ var forAll = [];
 int petPowerSum = 0;
 String? text;
 
+final player = AudioPlayer();
+
+double volume = 1;
+bool musicOff = false;
 
